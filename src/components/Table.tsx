@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { formatPhoneNumber } from '../utils/phoneUtils';
+
 
 
 interface Data {
@@ -20,27 +22,30 @@ interface Data {
     }, []);
   
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Imagem</th>
-            <th>Nome</th>
-            <th>Cargo</th>
-            <th>Data de admissão</th>
-            <th>Telefone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.image}</td>
-              <td>{item.job}</td>
-              <td>{item.admission_date}</td>
-              <td>{item.phone}</td>
+      <>
+        <input type="search" name="" id="" placeholder='Pesquisar'/>
+        <table>
+          <thead>
+            <tr>
+              <th>Imagem</th>
+              <th>Nome</th>
+              <th>Cargo</th>
+              <th>Data de admissão</th>
+              <th>Telefone</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.image}</td>
+                <td>{item.job}</td>
+                <td>{item.admission_date}</td>
+                <td>{formatPhoneNumber(item.phone)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
     );
   };
   
