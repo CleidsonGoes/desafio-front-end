@@ -47,7 +47,7 @@ interface Data {
             </tr>
           </thead>
           <tbody>
-            { data.map((item) => (
+            { filteredData.map((item) => (
               <tr key={item.id}>
                 <td>{item.image}</td>
                 <td>{item.name}</td>
