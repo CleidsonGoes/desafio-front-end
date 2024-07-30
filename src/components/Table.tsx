@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { formatPhoneNumber } from '../utils/phoneUtils';
 import formatDate from '../utils/dateUtils';
+import './FilteredTable.css';
 
 interface Data {
     id: number;
@@ -35,29 +36,31 @@ interface Data {
     return (
       <>
         <input type="text" placeholder="Filter by Name, job or Phone"
-        value={filter} onChange={handleFilterChange}/>
-        <table>
-          <thead>
-            <tr>
-              <th>Imagem</th>
-              <th>Nome</th>
-              <th>Cargo</th>
-              <th>Data de admissão</th>
-              <th>Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-            { filteredData.map((item) => (
-              <tr key={item.id}>
-                <td>{item.image}</td>
-                <td>{item.name}</td>
-                <td>{item.job}</td>
-                <td>{formatDate(item.admission_date)}</td>
-                <td>{formatPhoneNumber(item.phone)}</td>
+        value={filter} onChange={handleFilterChange} className='input-search'/>
+        <div id="container">
+          <table className="custom-table">
+            <thead className="custom-header">
+              <tr className="image-title">
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Data de admissão</th>
+                <th>Telefone</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              { filteredData.map((item) => (
+                <tr key={item.id}>
+                  <td><img src={item.image} alt={item.name} className="table-image" /></td>
+                  <td className='name-data'>{item.name}</td>
+                  <td className='job-data'>{item.job}</td>
+                  <td className='date-data'>{formatDate(item.admission_date)}</td>
+                  <td className='phone-data'>{formatPhoneNumber(item.phone)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </>
     );
   };
